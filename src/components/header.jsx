@@ -1,12 +1,16 @@
+import AddNew from "./addnew"
 import "./header.scss"
 import Logo from "./logo/logo"
 import Search from "./search"
 
 export default function Header(){
     return (
-        <div>
+        <div className="header-components">
             <Logo />
-            <Search />
+            <div className="header-wrapper">
+                <Search />
+                <AddNew />
+            </div>
         </div>
     )
 }

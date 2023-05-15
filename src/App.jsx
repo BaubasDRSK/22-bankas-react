@@ -1,4 +1,5 @@
 import './App.scss';
+import Footer from './components/footer';
 import Header from './components/header';
 
 function App() {
@@ -7,9 +8,14 @@ function App() {
       <header className="main-header">
       <Header/>
       </header>
-      <main>
+      <div className="main-footer-wrapp">
+        <main>
         
-      </main>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }

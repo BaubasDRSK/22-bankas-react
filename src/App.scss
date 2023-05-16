@@ -33,10 +33,9 @@ main {
     list-style-type: none ;
   }
   .list-item{
-    display: flex;
-    gap: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     div{
-      flex-grow: 1;
     }
   }
 }

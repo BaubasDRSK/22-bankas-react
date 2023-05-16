@@ -1,0 +1,16 @@
+.addNewModalWrapp{
+    position: relative;
+}
+
+
+.addNewFormWrapp{
+    position:absolute;
+    padding: 0px;
+    right: 0px;
+    top:0px;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

@@ -1,5 +1,7 @@
-import { useRef, useState } from 'react'
-import './addnew.scss'
+import { useRef, useState } from 'react';
+import './addnew.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddNew({ setCreateData }){
     const [addNewModalDisplay, setAddNewModalDisplay]= useState('none');
@@ -51,7 +53,6 @@ export default function AddNew({ setCreateData }){
 
     function openAddNew (){
         setAddNewModalDisplay('block');
-        console.log(addNewModalDisplay);
     }
 
     return (
@@ -59,6 +60,11 @@ export default function AddNew({ setCreateData }){
             <button className="btn add-new" onClick={openAddNew }>Add new</button>
             <div className="addNewModal" style={{display:addNewModalDisplay}}>
                 <div className="addNewFormWrapp">
+                    <button className="close" onClick={_=>{
+                        setAddNewModalDisplay('none');
+                        nameRef.current.value = '';
+                        surnameRef.current.value = '';
+                        }}><FontAwesomeIcon icon={faCircleXmark} /></button>
                     <form onSubmit={handleSubmit} className='addNew'>  
                          
                         <label htmlFor='name'>Name:</label>

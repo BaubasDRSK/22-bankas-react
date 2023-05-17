@@ -9,7 +9,7 @@ export default function Header({ setCreateData }){
         <div className="header-components">
             <Logo />
             <div className="header-wrapper">
-                <Search />
+                {/* <Search /> */}
                 <AddNew setCreateData={setCreateData}/>
             </div>
         </div>

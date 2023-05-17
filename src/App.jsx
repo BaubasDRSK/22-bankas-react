@@ -4,6 +4,8 @@ import Footer from './components/footer';
 import Header from './components/header';
 import { crudCreate, crudDelete, crudEdit, crudRead } from './functions/localStorageCrud';
 import List from './components/list';
+import AddMoney from './components/addmoney';
+import MinusMoney from './components/minusmoney';
 
 
 const KEY = 'myBankAccounts';
@@ -16,7 +18,10 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [deleteModalData, setDeleteModalData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
-  const [editModalData, setEditModalData] = useState(null);
+
+  const [addModalData, setAddModalData] = useState(null);
+  const [minusModalData, setMinusModalData] = useState(null);
+
   const [editData, setEditData] = useState(null);
   const [messages, setMessages] = useState([]);
 
@@ -35,6 +40,15 @@ function App() {
     setListUpdate(Date.now());
     // msg('New color was creates', 'ok');
   }, [createData]);
+
+  //U update
+  useEffect(_ => {
+    if (null === editData) {
+        return;
+    }
+      crudEdit(KEY, editData, editData.id);
+      setListUpdate(Date.now());
+  }, [editData]);
 
   //D deleate
   useEffect(_ => {
@@ -59,12 +73,26 @@ function App() {
           <List
             accounts={accounts}
             setDeleteData={setDeleteData}
-            setEditModalData={setEditModalData}
+            setAddModalData={setAddModalData}
+            setMinusModalData={setMinusModalData}
+
           />
         </main>
       </div>
       <div className="main-footer-wrapp">
         <footer>
+          <AddMoney 
+            addModalData={addModalData}
+            setAddModalData={setAddModalData}
+            setEditData={setEditData}
+          />
+
+          <MinusMoney
+            minusModalData={minusModalData}
+            setMinusModalData={setMinusModalData}
+            setEditData={setEditData}
+          />
+
           <Footer />
         </footer>
       </div>

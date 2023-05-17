@@ -51,7 +51,7 @@ return (
     <div className="modal">
         <div className="modal-wrapper">
             <h4>{alert}</h4>
-            <input type="number" placeholder="0.00 €" step="0.01" min="0" max="100000" value={minusAmmount} onChange={handleMinusAmmount} />
+            <input type="number" placeholder="0.00 €" step="0.01" min="0" max="100000" value={parseFloat(minusAmmount)>0?parseFloat(minusAmmount):''} onChange={handleMinusAmmount} />
             <button className="btn"  onClick={minus}>Withdraw</button>
         </div>
     </div>

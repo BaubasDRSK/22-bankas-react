@@ -28,7 +28,7 @@ return (
     <div className="modal">
         <div className="modal-wrapper">
             <h4>Enter ammount to add to account:</h4>
-            <input type="number" placeholder="0.00 €" step="0.01" min="0" max="100000"  value={addAmmount} onChange={handleAddAmmount} />
+            <input type="number" placeholder="0.00 €" step="0.01" min="0" max="100000"  value={parseFloat(addAmmount)>0?parseFloat(addAmmount):''} onChange={handleAddAmmount} />
             <button className="btn"  onClick={add}>Add money</button>
         </div>
     </div>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function MinusMoney({ minusModalData, setMinusModalData, setEditData}){
 
@@ -39,6 +41,13 @@ export default function MinusMoney({ minusModalData, setMinusModalData, setEditD
         return (
             <div className="modal">
                 <div className="modal-wrapper">
+
+                    <div className="close" onClick={_=>{
+                            setMinusModalData(null);
+                            setMinusAmmount(0);
+                            }}><FontAwesomeIcon icon={faCircleXmark} />
+                    </div>
+
                     <h4>Balance is empty, cant withdraw money.</h4>
                     <button className="btn"  onClick={minus}>Cancle</button>
                 </div>
@@ -49,6 +58,13 @@ export default function MinusMoney({ minusModalData, setMinusModalData, setEditD
     return (
         <div className="modal">
             <div className="modal-wrapper">
+
+                <div className="close" onClick={_=>{
+                        setMinusModalData(null);
+                        setMinusAmmount(0);
+                        }}><FontAwesomeIcon icon={faCircleXmark} />
+                </div>
+
                 <h4>{alert}</h4>
                 <input type="number" placeholder="0.00 €" step="0.01" min="0" max="100000" value={parseFloat(minusAmmount)>0?parseFloat(minusAmmount):''} onChange={handleMinusAmmount} />
                 <button className="btn"  onClick={minus}>Withdraw</button>

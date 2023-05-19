@@ -25,7 +25,6 @@ function App() {
   const [editData, setEditData] = useState(null);
   const [messages, setMessages] = useState([]);
 
-
   //R read
   useEffect(_ => {
     setAccounts(crudRead(KEY));
@@ -99,7 +98,10 @@ function App() {
           <DeletaAcc 
             setDeleteMessage = {setDeleteMessage}
             deleteMessage = {deleteMessage}
-            
+            deleteModalData = {deleteModalData}
+            setDeleteModalData = {setDeleteModalData}
+            setEditData = {setEditData}
+            setDeleteData={setDeleteData}
           />
           
           <Footer />

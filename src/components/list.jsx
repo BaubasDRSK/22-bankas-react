@@ -9,11 +9,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 export default function List({ accounts, setDeleteModalData, setDeleteData, setAddModalData, setMinusModalData, setDeleteMessage, deleteMessage }) {
     
     const destroy = c => {
-            setDeleteMessage('Are you shure you want to delete this account? \r\n' + c.Name + ', ' + c.Surname);
+            setDeleteMessage('Are you shure you want to delete this account? \n' + c.Name + ', ' + c.Surname);
             if (c.Balance !== 0){
-                setDeleteMessage('Can not delete account, because balance is: ' + (c.Balance/100) + '€\n\r Do You want to withdraw this ammount?');
+                setDeleteMessage('Can not delete account, because balance is: ' + (c.Balance/100) + '€\n Do You want to withdraw this ammount?');
             }
-            setDeleteModalData(accounts);
+            setDeleteModalData(c);
     }
 
     const plus = c => {

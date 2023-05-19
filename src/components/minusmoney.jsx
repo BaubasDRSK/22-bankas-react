@@ -37,13 +37,11 @@ export default function MinusMoney({ minusModalData, setMinusModalData, setEditD
 
     const handleParentClick = event => {
         event.preventDefault();
-    
         if (event.target === event.currentTarget) {
-            console.log('parent clicked');
             setMinusModalData(null);
             setMinusAmmount(0);
         }
-        };
+    };
 
 
     const displayValue = minusAmmount===0?'':minusAmmount;

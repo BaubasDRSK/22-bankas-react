@@ -6,6 +6,7 @@ import { crudCreate, crudDelete, crudEdit, crudRead } from './functions/localSto
 import List from './components/list';
 import AddMoney from './components/addmoney';
 import MinusMoney from './components/minusmoney';
+import DeletaAcc from './components/deleteAcc';
 
 
 const KEY = 'myBankAccounts';
@@ -18,12 +19,12 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [deleteModalData, setDeleteModalData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
-
+  const [deleteMessage, setDeleteMessage] = useState('');
   const [addModalData, setAddModalData] = useState(null);
   const [minusModalData, setMinusModalData] = useState(null);
-
   const [editData, setEditData] = useState(null);
   const [messages, setMessages] = useState([]);
+
 
   //R read
   useEffect(_ => {
@@ -72,10 +73,12 @@ function App() {
         <main>
           <List
             accounts={accounts}
-            setDeleteData={setDeleteData}
-            setAddModalData={setAddModalData}
-            setMinusModalData={setMinusModalData}
-
+            setDeleteData = {setDeleteData}
+            setAddModalData = {setAddModalData}
+            setMinusModalData = {setMinusModalData}
+            setDeleteModalData = {setDeleteModalData}
+            setDeleteMessage = {setDeleteMessage}
+            deleteMessage = {deleteMessage}
           />
         </main>
       </div>
@@ -93,6 +96,12 @@ function App() {
             setEditData={setEditData}
           />
 
+          <DeletaAcc 
+            setDeleteMessage = {setDeleteMessage}
+            deleteMessage = {deleteMessage}
+            
+          />
+          
           <Footer />
         </footer>
       </div>

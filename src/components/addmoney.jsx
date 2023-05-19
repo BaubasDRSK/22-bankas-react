@@ -16,8 +16,9 @@ if(parseFloat(addAmmount) < 0 || isNaN(parseFloat(addAmmount)) ){
 }
 
 const add = _ => {
-    const sum = parseFloat(addAmmount) + addModalData.Balance;
-    setEditData({...addModalData, Balance:sum, id: addModalData.id});
+    const sum = parseFloat(addAmmount) + (addModalData.Balance/100);
+    const a = Math.round(sum * 100);
+    setEditData({...addModalData, Balance: a, id: addModalData.id});
     setAddModalData(null);
     setAddAmmount(0);
 }

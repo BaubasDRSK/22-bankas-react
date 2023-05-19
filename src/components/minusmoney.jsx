@@ -9,7 +9,6 @@ export default function MinusMoney({ minusModalData, setMinusModalData, setEditD
     const [alert, setAlert] = useState('Enter ammount to withdraw from account:')
 
     const handleMinusAmmount = e =>{
-        console.log(e);
         setMinusAmmount(e);
     };
 
@@ -18,18 +17,19 @@ export default function MinusMoney({ minusModalData, setMinusModalData, setEditD
     }
 
     const minus = _ => {
-                            if (parseFloat(minusAmmount)>minusModalData.Balance){
-                                setAlert('Can withdraw only up to '+ minusModalData.Balance +'\n\r € Enter ammount to withdraw from account:' );
-                                setMinusAmmount(minusModalData.Balance);
+                            if (parseFloat(minusAmmount)>(minusModalData.Balance/100)){
+                                setAlert('Can withdraw only up to '+ (minusModalData.Balance/100) +'\n\r € Enter ammount to withdraw from account:' );
+                                setMinusAmmount((minusModalData.Balance/100));
                                 return;
                             }
                             setAlert('Enter ammount to withdraw from account:' );
-                            const diff = minusModalData.Balance - parseFloat(minusAmmount);
+                            const diff = (minusModalData.Balance/100) - parseFloat(minusAmmount);
                             if (diff <0 || isNaN(diff) || diff === null || diff===undefined){
                                 setAlert('Error. Try one more time');
                                 return
                             }
-                            setEditData({...minusModalData, Balance:diff, id: minusModalData.id});
+                            const a = Math.round(diff * 100);
+                            setEditData({...minusModalData, Balance:a, id: minusModalData.id});
                             setMinusModalData(null);
                             setMinusAmmount(0);
                         }

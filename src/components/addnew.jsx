@@ -64,19 +64,21 @@ export default function AddNew({ setCreateData }){
                         setAddNewModalDisplay('none');
                         nameRef.current.value = '';
                         surnameRef.current.value = '';
-                        }}><FontAwesomeIcon icon={faCircleXmark} /></button>
-                    <form onSubmit={handleSubmit} className='addNew'>  
-                         
-                        <label htmlFor='name'>Name:</label>
-                        <input type="text" id="name" ref={nameRef}  required />
-                        {nameError && <div className="error-message">{nameError}</div>}
+                        }}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                            <form onSubmit={handleSubmit} className='addNew'>  
+                                
+                                <label htmlFor='name'>Name:</label>
+                                <input type="text" id="name" ref={nameRef}  required />
+                                {nameError && <div className="error-message">{nameError}</div>}
 
-                        <label htmlFor='surname'>Surname:</label>
-                        <input type="text" id="surname" ref={surnameRef} required />
-                        {surnameError && <div className="error-message">{surnameError}</div>}
+                                <label htmlFor='surname'>Surname:</label>
+                                <input type="text" id="surname" ref={surnameRef} required />
+                                {surnameError && <div className="error-message">{surnameError}</div>}
 
-                        <button className="btn" type="submit">Add account</button>
-                    </form>
+                                <button className="btn" type="submit">Add account</button>
+                            </form>
                 </div>
             </div>
         </div>

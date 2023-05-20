@@ -24,12 +24,13 @@ function App() {
   const [minusModalData, setMinusModalData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [sort, setSort] = useState({sortDirection:'default', sortName:'Name'});
+
 
   //R read
   useEffect(_ => {
-    setAccounts(crudRead(KEY));
-  }, [listUpdate]);
-
+    setAccounts(crudRead(KEY).map((c, i) => ({...c, row: i, show: true})));
+}, [listUpdate]);
 
   //C create
   useEffect(_ => {
@@ -60,8 +61,17 @@ function App() {
     // msg('Color has gone', 'ok');
   }, [deleteData]);
 
+  const doSort = n => {
+    setSort(s => {
+        switch (s.sortDirection) {
+            case 'default': return {sortDirection:'up', sortName:n};
+            case 'up': return {sortDirection:'down', sortName:n};
+            default: return {sortDirection:'default', sortName:n};
+        }
+    });
+}
 
-
+console.log(sort);
 
   return (
     <div className="App">
@@ -78,6 +88,7 @@ function App() {
             setDeleteModalData = {setDeleteModalData}
             setDeleteMessage = {setDeleteMessage}
             deleteMessage = {deleteMessage}
+            doSort = {doSort}
           />
         </main>
       </div>

@@ -58,3 +58,8 @@
     }
 }
 
+.list-item.headers>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

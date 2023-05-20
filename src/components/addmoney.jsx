@@ -24,12 +24,9 @@ export default function AddMoney({ addModalData, setAddModalData, setEditData, m
         setAddAmmount(0);
     }
 
-
-
     const handleParentClick = event => {
         event.preventDefault();
         if (event.target === event.currentTarget) {
-            console.log('parent clicked');
             setAddModalData(null);
             setAddAmmount(0);
             msg('Action was canceled', 'error');
@@ -76,7 +73,6 @@ export default function AddMoney({ addModalData, setAddModalData, setEditData, m
             </div>
         </div>
     )
-
 }
 
 

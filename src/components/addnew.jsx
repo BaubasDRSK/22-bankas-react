@@ -5,19 +5,16 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddNew({ setCreateData, msg }){
     const [addNewModalDisplay, setAddNewModalDisplay]= useState('none');
-    
+    const [nameError, setNameError] = useState('');
+    const [surnameError, setSurnameError] = useState('');
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
 
-    const [nameError, setNameError] = useState('');
-    const [surnameError, setSurnameError] = useState('');
-
     const handleSubmit = (event) => {
         event.preventDefault();
-    
         const name = nameRef.current.value;
         const surname = surnameRef.current.value;
-    
+        
         if (!validateName(name)) {
             setNameError('Please enter a valid name.');
             return;
@@ -27,18 +24,16 @@ export default function AddNew({ setCreateData, msg }){
             setSurnameError('Please enter a valid surname.');
             return;
         }
-        
+
         // Clear any existing error messages
         setNameError('');
         setSurnameError('');
-    
         setCreateData({Name:name, Surname:surname, Balance:0}); //su formos info sukuria nauja accounta
         setAddNewModalDisplay('none');
         msg('Account was added', 'info');
         // Reset the form
         nameRef.current.value = '';
         surnameRef.current.value = '';
-
     };
 
     const validateName = (name) => {
@@ -50,7 +45,6 @@ export default function AddNew({ setCreateData, msg }){
     // Custom validation logic for surname
     return /^[A-Za-z\s]+$/.test(surname);
     };
-
 
     function openAddNew (){
         setAddNewModalDisplay('block');
@@ -67,19 +61,19 @@ export default function AddNew({ setCreateData, msg }){
                         surnameRef.current.value = '';
                         }}>
                         <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                            <form onSubmit={handleSubmit} className='addNew'>  
-                                
-                                <label htmlFor='name'>Name:</label>
-                                <input type="text" id="name" ref={nameRef}  required />
-                                {nameError && <div className="error-message">{nameError}</div>}
+                    </button>
+                        <form onSubmit={handleSubmit} className='addNew'>  
+                            
+                            <label htmlFor='name'>Name:</label>
+                            <input type="text" id="name" ref={nameRef}  required />
+                            {nameError && <div className="error-message">{nameError}</div>}
 
-                                <label htmlFor='surname'>Surname:</label>
-                                <input type="text" id="surname" ref={surnameRef} required />
-                                {surnameError && <div className="error-message">{surnameError}</div>}
+                            <label htmlFor='surname'>Surname:</label>
+                            <input type="text" id="surname" ref={surnameRef} required />
+                            {surnameError && <div className="error-message">{surnameError}</div>}
 
-                                <button className="btn" type="submit">Add account</button>
-                            </form>
+                            <button className="btn" type="submit">Add account</button>
+                        </form>
                 </div>
             </div>
         </div>

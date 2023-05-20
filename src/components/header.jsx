@@ -4,12 +4,12 @@ import Logo from "./logo/logo"
 import Search from "./search"
 import { useState } from 'react';
 
-export default function Header({ setCreateData }){
+export default function Header({ setCreateData, filter, setFilter}){
     return (
         <div className="header-components">
             <Logo />
             <div className="header-wrapper">
-                {/* <Search /> */}
+                <Search filter={filter} setFilter={setFilter}/>
                 <AddNew setCreateData={setCreateData}/>
             </div>
         </div>

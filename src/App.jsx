@@ -25,12 +25,13 @@ function App() {
   const [editData, setEditData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [sort, setSort] = useState({sortDirection:'default', sortName:'Name'});
+  const [filter, setFilter] = useState('');
 
 
   //R read
   useEffect(_ => {
     setAccounts(crudRead(KEY).map((c, i) => ({...c, row: i, show: true})));
-}, [listUpdate]);
+  }, [listUpdate]);
 
   //C create
   useEffect(_ => {
@@ -62,9 +63,6 @@ function App() {
   }, [deleteData]);
 
   //S Sort
-
-  
-
   useEffect(() => {
     if (sort.sortDirection === 'default') {
         setAccounts(c => [...c].sort((a, b) => a.row - b.row));
@@ -89,21 +87,28 @@ function App() {
 
   const doSort = n => {
     setSort(s => {
-        switch (s.sortDirection) {
-            case 'default': return {sortDirection:'up', sortName:n};
-            case 'up': return {sortDirection:'down', sortName:n};
-            default: return {sortDirection:'default', sortName:n};
-        }
+      switch (s.sortDirection) {
+          case 'default': return {sortDirection:'up', sortName:n};
+          case 'up': return {sortDirection:'down', sortName:n};
+          default: return {sortDirection:'default', sortName:n};
+      }
     });
-}
+  }
 
-console.log(sort);
+  // Filter
+  useEffect(() => {
+    setAccounts(c => c.map(c => c.Name.toLowerCase().search(filter.toLowerCase()) !== -1 ? {...c, show: true} : {...c, show: false}))
+  }, [filter, listUpdate]);
 
   return (
     <div className="App">
       <div>
         <header className="main-header">
-        <Header setCreateData={setCreateData}/>
+        <Header 
+          setCreateData={setCreateData}
+          filter = {filter}
+          setFilter = {setFilter}
+        />
         </header>
         <main>
           <List
@@ -126,13 +131,11 @@ console.log(sort);
             setAddModalData={setAddModalData}
             setEditData={setEditData}
           />
-
           <MinusMoney
             minusModalData={minusModalData}
             setMinusModalData={setMinusModalData}
             setEditData={setEditData}
           />
-
           <DeletaAcc 
             setDeleteMessage = {setDeleteMessage}
             deleteMessage = {deleteMessage}
@@ -141,7 +144,6 @@ console.log(sort);
             setEditData = {setEditData}
             setDeleteData={setDeleteData}
           />
-          
           <Footer />
         </footer>
       </div>

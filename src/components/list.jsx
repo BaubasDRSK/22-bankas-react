@@ -69,7 +69,7 @@ export default function List({ accounts, setDeleteModalData, setDeleteData, setA
                 {
                     accounts
                         ? accounts.length
-                            ? accounts.map(c => (                               
+                            ? accounts.map(c => (c.show ?                               
                                     <li key={c.id} className="list-group-item">
                                         <div className="list-item">
                                             <div className="account-name">{c.Name}</div>
@@ -81,7 +81,7 @@ export default function List({ accounts, setDeleteModalData, setDeleteData, setA
                                                 <span className='delete' style={{display:'inline-block'}} onClick={_ => destroy(c)}><FontAwesomeIcon icon={faTrash} /></span>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>: null
                                 ))
                             : 'No accounts yet'
                         : '...loading'

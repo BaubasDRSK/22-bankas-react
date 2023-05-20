@@ -8,7 +8,7 @@ import { faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function List({ accounts, setDeleteModalData, setDeleteData, setAddModalData, setMinusModalData, setDeleteMessage, deleteMessage, doSort, sort }) {
+export default function List({ accounts, setDeleteModalData, setDeleteData, setAddModalData, setMinusModalData, setDeleteMessage, deleteMessage, doSort, sort}) {
     const destroy = c => {
             setDeleteMessage('Are you shure you want to delete this account? \n' + c.Name + ', ' + c.Surname);
             if (c.Balance !== 0){

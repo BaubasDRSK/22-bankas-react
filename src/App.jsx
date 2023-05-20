@@ -7,7 +7,8 @@ import List from './components/list';
 import AddMoney from './components/addmoney';
 import MinusMoney from './components/minusmoney';
 import DeletaAcc from './components/deleteAcc';
-
+import Messages from './components/messages';
+import { v4 as uuidv4 } from 'uuid';
 
 const KEY = 'myBankAccounts';
 
@@ -59,7 +60,7 @@ function App() {
     }
     crudDelete(KEY, deleteData.id);
     setListUpdate(Date.now());
-    // msg('Color has gone', 'ok');
+    msg('Account was deleted', 'ok');
   }, [deleteData]);
 
   //S Sort
@@ -100,6 +101,18 @@ function App() {
     setAccounts(c => c.map(c => c.Name.toLowerCase().search(filter.toLowerCase()) !== -1 ? {...c, show: true} : {...c, show: false}))
   }, [filter, listUpdate]);
 
+  //Messages
+  const msg = (text, type) => {
+    const id = uuidv4();
+    const message = {
+        id,
+        text,
+        type
+    }
+    setMessages(m => [...m, message]);
+    setTimeout(_ => setMessages(m => m.filter(m => m.id !== id)), 5000);
+  }
+
   return (
     <div className="App">
       <div>
@@ -108,6 +121,7 @@ function App() {
           setCreateData={setCreateData}
           filter = {filter}
           setFilter = {setFilter}
+          msg = {msg}
         />
         </header>
         <main>
@@ -130,11 +144,13 @@ function App() {
             addModalData={addModalData}
             setAddModalData={setAddModalData}
             setEditData={setEditData}
+            msg = {msg}
           />
           <MinusMoney
             minusModalData={minusModalData}
             setMinusModalData={setMinusModalData}
             setEditData={setEditData}
+            msg = {msg}
           />
           <DeletaAcc 
             setDeleteMessage = {setDeleteMessage}
@@ -143,10 +159,12 @@ function App() {
             setDeleteModalData = {setDeleteModalData}
             setEditData = {setEditData}
             setDeleteData={setDeleteData}
+            msg = {msg}
           />
           <Footer />
         </footer>
       </div>
+      <Messages messages={messages} />
     </div>
   );
 }

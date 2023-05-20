@@ -3,7 +3,7 @@ import './addnew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function AddNew({ setCreateData }){
+export default function AddNew({ setCreateData, msg }){
     const [addNewModalDisplay, setAddNewModalDisplay]= useState('none');
     
     const nameRef = useRef(null);
@@ -34,6 +34,7 @@ export default function AddNew({ setCreateData }){
     
         setCreateData({Name:name, Surname:surname, Balance:0}); //su formos info sukuria nauja accounta
         setAddNewModalDisplay('none');
+        msg('Account was added', 'info');
         // Reset the form
         nameRef.current.value = '';
         surnameRef.current.value = '';

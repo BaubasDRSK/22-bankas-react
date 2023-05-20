@@ -4,7 +4,6 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function DeletaAcc({deleteModalData, setDeleteModalData,deleteMessage, setEditData, setDeleteData}){
     
-    console.log(deleteMessage)
 
     if (deleteModalData === null){
         return ;

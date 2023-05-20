@@ -61,6 +61,32 @@ function App() {
     // msg('Color has gone', 'ok');
   }, [deleteData]);
 
+  //S Sort
+
+  
+
+  useEffect(() => {
+    if (sort.sortDirection === 'default') {
+        setAccounts(c => [...c].sort((a, b) => a.row - b.row));
+    } else if(sort.sortDirection === 'up') {
+          setAccounts(c => [...c].sort((a, b) => {
+            if (typeof a[sort.sortName] === 'number' && typeof b[sort.sortName] === 'number') {
+              return a[sort.sortName] - b[sort.sortName];
+            } else {
+              return a[sort.sortName].localeCompare(b[sort.sortName]);
+            }}
+            ));
+    } else {
+      setAccounts(c => [...c].sort((b, a) => {
+        if (typeof a[sort.sortName] === 'number' && typeof b[sort.sortName] === 'number') {
+          return a[sort.sortName] - b[sort.sortName];
+        } else {
+          return a[sort.sortName].localeCompare(b[sort.sortName]);
+        }}
+        ));
+    }
+  }, [sort, listUpdate]);
+
   const doSort = n => {
     setSort(s => {
         switch (s.sortDirection) {
@@ -89,6 +115,7 @@ console.log(sort);
             setDeleteMessage = {setDeleteMessage}
             deleteMessage = {deleteMessage}
             doSort = {doSort}
+            sort = {sort}
           />
         </main>
       </div>
